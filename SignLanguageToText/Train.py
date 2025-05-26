@@ -4,7 +4,7 @@ from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint, ReduceLROnPlateau
 from tensorflow.keras.optimizers import Adam
 
-# Data augmentation
+# Data zoom
 train_data = ImageDataGenerator(
     rescale=1./255,
     validation_split=0.2,
@@ -73,7 +73,7 @@ callbacks = [
 model.fit(
     train_gen,
     validation_data=val_gen,
-    epochs=20,
+    epochs=25,
     callbacks=callbacks
 )
 

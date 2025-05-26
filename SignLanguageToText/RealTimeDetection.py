@@ -62,19 +62,19 @@ while True:
                 cv2.FONT_HERSHEY_PLAIN, 1, (0, 255, 0), 2)
     cv2.rectangle(frame, top_left, bottom_right, (0, 255, 0), 2)
     cv2.putText(frame, f"{phrase}", (10, 400),
-                cv2.FONT_HERSHEY_PLAIN, 1.2, (255, 255, 255), 2)
+                cv2.FONT_HERSHEY_PLAIN, 1.2, (255, 0, 0), 2)
 
     cv2.imshow("Sign Detection", frame)
 
     key = cv2.waitKey(1) & 0xFF
-    if key == ord('q'):
+    if key == ord('q'): # Q to exit application
         break
-    elif key == ord('c'):  # press 'c' to clear the word
+    elif key == ord('c'): # C to clear the word
         phrase = ''
         prev_letter = ''
-    elif key == ord(' '):
+    elif key == ord(' '): # Space to add a space between words
         phrase += ' '
-    elif key == 8: #Backspace
+    elif key == 8: # Backspace to remove a letter
         phrase = phrase[:-1]
 cap.release()
 cv2.destroyAllWindows()
