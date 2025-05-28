@@ -61,6 +61,13 @@ You can use the image below as a reference for the American Sign Language alphab
 
 ---
 
+## Training dataset
+
+The training dataset used to fully train the model used can be found in the following page:
+[![ASL Training dataset](https://www.kaggle.com/datasets/vignonantoine/mediapipe-processed-asl-dataset)
+
+---
+
 ## Dependencies
 
 Ensure that the following libraries are installed (included in `requirements.txt`):
