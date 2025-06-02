@@ -5,7 +5,7 @@ import time
 from tensorflow.keras.models import load_model
 import mediapipe as mp
 
-model = load_model("../sign_lang_model.keras")
+model = load_model("sign_lang_model.keras")
 classes = list(string.digits + string.ascii_uppercase)
 
 mp_hands = mp.solutions.hands
