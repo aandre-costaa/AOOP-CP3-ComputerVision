@@ -5,7 +5,7 @@ import time
 from tensorflow.keras.models import load_model
 import mediapipe as mp
 
-model = load_model("sign_lang_model.keras")
+model = load_model("../sign_lang_model.keras")
 classes = list(string.digits + string.ascii_uppercase)
 
 mp_hands = mp.solutions.hands
@@ -61,7 +61,8 @@ while True:
     cv2.putText(frame, f"Letter: {letter} ({confidence:.1f}%)", (10, 40),
                 cv2.FONT_HERSHEY_PLAIN, 1, (0, 255, 0), 2)
     cv2.rectangle(frame, top_left, bottom_right, (0, 255, 0), 2)
-    cv2.putText(frame, f"{phrase}", (10, 400),
+    cv2.rectangle(frame, (0, 400), (690, 600), (0, 0, 0), thickness=cv2.FILLED)
+    cv2.putText(frame, f"{phrase}", (10, 420),
                 cv2.FONT_HERSHEY_PLAIN, 1.2, (255, 0, 0), 2)
 
     cv2.imshow("Sign Detection", frame)
@@ -74,6 +75,7 @@ while True:
         prev_letter = ''
     elif key == ord(' '): # Space to add a space between words
         phrase += ' '
+        prev_letter = ''
     elif key == 8: # Backspace to remove a letter
         phrase = phrase[:-1]
 cap.release()

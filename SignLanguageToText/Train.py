@@ -1,8 +1,11 @@
 from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import SeparableConv2D, MaxPooling2D, Flatten, Dense, Dropout, BatchNormalization, GlobalAveragePooling2D
+from tensorflow.keras.layers import (SeparableConv2D, MaxPooling2D, Flatten,
+                                     Dense, Dropout, BatchNormalization,
+                                     GlobalAveragePooling2D, LeakyReLU)
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint, ReduceLROnPlateau
 from tensorflow.keras.optimizers import Adam
+from tensorflow.keras import mixed_precision
 
 # Data zoom
 train_data = ImageDataGenerator(
@@ -50,8 +53,16 @@ model = Sequential([
     BatchNormalization(),
     MaxPooling2D(2, 2),
 
+    SeparableConv2D(256, (3, 3), activation='relu', padding='same'),
+    BatchNormalization(),
+    MaxPooling2D(2, 2),
+
+    SeparableConv2D(512, (3, 3), activation='relu', padding='same'),
+    BatchNormalization(),
+    MaxPooling2D(2, 2),
+
     GlobalAveragePooling2D(),
-    Dense(256, activation='relu'),
+    Dense(1024, activation='relu'),
     Dropout(0.5),
     Dense(36, activation='softmax')
 ])
